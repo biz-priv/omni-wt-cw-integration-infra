@@ -17,3 +17,27 @@ variable "created_by" {
   type     = string
   nullable = false
 }
+variable "application" {
+  type     = string
+  nullable = false
+}
+
+variable "s3_prefix" {
+  type     = string
+  nullable = false
+}
+
+variable "s3_suffix" {
+  type     = string
+  nullable = false
+}
+
+variable "cw_api_endpoint" {
+  type     = string
+  nullable = false
+}
+
+variable "cw_api_auth" {
+  type     = string
+  nullable = false
+}
