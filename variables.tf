@@ -31,3 +31,13 @@ variable "s3_suffix" {
   type     = string
   nullable = false
 }
+
+variable "cw_api_endpoint" {
+  type     = string
+  nullable = false
+}
+
+variable "cw_api_auth" {
+  type     = string
+  nullable = false
+}

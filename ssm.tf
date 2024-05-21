@@ -74,3 +74,29 @@ resource "aws_ssm_parameter" "wt_cw_create_shipment_status_table_housebill_index
     STAGE       = var.env
   }
 }
+
+resource "aws_ssm_parameter" "cw_api_endpoint" {
+  name  = "/${var.application}/${var.env}/createShipment/cw/url"
+  type  = "String"
+  value = var.cw_api_endpoint
+
+  tags = {
+    Application = var.application
+    CreatedBy   = var.created_by
+    Environment = var.env
+    STAGE       = var.env
+  }
+}
+
+resource "aws_ssm_parameter" "cw_api_auth" {
+  name  = "/${var.application}/${var.env}/createShipment/cw/auth"
+  type  = "String"
+  value = var.cw_api_auth
+
+  tags = {
+    Application = var.application
+    CreatedBy   = var.created_by
+    Environment = var.env
+    STAGE       = var.env
+  }
+}
