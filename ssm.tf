@@ -24,10 +24,10 @@ resource "aws_ssm_parameter" "s3_suffix_lenovo" {
   }
 }
 
-resource "aws_ssm_parameter" "lenovo_create_shipment_status_table_name" {
+resource "aws_ssm_parameter" "wt_cw_create_shipment_status_table" {
   name  = "/${var.application}/${var.env}/create-shipment-status-table-name"
   type  = "String"
-  value = aws_dynamodb_table.lenovo_create_shipment_status_table.name
+  value = aws_dynamodb_table.wt_cw_create_shipment_status_table.name
 
   tags = {
     Application = var.application
@@ -50,7 +50,7 @@ resource "aws_ssm_parameter" "lenovo_create_shipment_status_table_name" {
 #   }
 # }
 
-resource "aws_ssm_parameter" "lenovo_create_shipment_status_table_status_index" {
+resource "aws_ssm_parameter" "wt_cw_create_shipment_status_table_status_index" {
   name  = "/${var.application}/${var.env}/create-shipment-status-table-status-index"
   type  = "String"
   value = "Status-index"
@@ -62,7 +62,7 @@ resource "aws_ssm_parameter" "lenovo_create_shipment_status_table_status_index" 
     STAGE       = var.env
   }
 }
-resource "aws_ssm_parameter" "lenovo_create_shipment_status_table_housebill_index" {
+resource "aws_ssm_parameter" "wt_cw_create_shipment_status_table_housebill_index" {
   name  = "/${var.application}/${var.env}/create-shipment-status-table-housebill-index"
   type  = "String"
   value = "Housebill-index"
