@@ -55,12 +55,12 @@ resource "aws_dynamodb_table" "wt_cw_create_shipment_status_table" {
 resource "aws_dynamodb_table" "wt_cw_customers_list_table" {
   name         = "wt-cw-customers-list-${var.env}"
   billing_mode = "PAY_PER_REQUEST"
-  hash_key     = "BillNo "
+  hash_key     = "BillNo"
   # stream_enabled   = true
   # stream_view_type = "NEW_AND_OLD_IMAGES"
 
   attribute {
-    name = "BillNo "
+    name = "BillNo"
     type = "S"
   }
 
@@ -70,5 +70,41 @@ resource "aws_dynamodb_table" "wt_cw_customers_list_table" {
     Environment = var.env
     STAGE       = var.env
     Name        = "wt-cw-customers-list-${var.env}"
+  }
+}
+
+resource "aws_dynamodb_table" "wt_cw_add_milestone_table" {
+  name         = "wt-cw-add-milestone-${var.env}"
+  billing_mode = "PAY_PER_REQUEST"
+  hash_key     = "OrderNo"
+  range_key    = "OrderStatusId"
+
+  attribute {
+    name = "FK_OrderNo"
+    type = "S"
+  }
+
+  attribute {
+    name = "OrderStatusId"
+    type = "S"
+  }
+
+  attribute {
+    name = "ReferenceNo"
+    type = "S"
+  }
+
+  global_secondary_index {
+    name            = "ReferenceNo-index"
+    hash_key        = "ReferenceNo"
+    projection_type = "ALL"
+  }
+
+  tags = {
+    Application = var.application
+    CreatedBy   = var.created_by
+    Environment = var.env
+    STAGE       = var.env
+    Name        = "wt-cw-add-milestone-${var.env}"
   }
 }
