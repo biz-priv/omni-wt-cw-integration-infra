@@ -113,7 +113,6 @@ resource "aws_ssm_parameter" "omni_wt_cw_lenovo_add_milestone_sqs_arn" {
   type  = "String"
   value = aws_sqs_queue.omni_wt_cw_lenovo_add_milestone_sqs.arn
 
-
   tags = {
     Application = var.application
     CreatedBy   = var.created_by
@@ -126,7 +125,6 @@ resource "aws_ssm_parameter" "wt_cw_add_milestone_table_name" {
   name  = "/${var.application}/${var.env}/add-milestone-status-table-name"
   type  = "String"
   value = aws_dynamodb_table.wt_cw_add_milestone_table.name
-
 
   tags = {
     Application = var.application

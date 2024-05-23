@@ -43,6 +43,16 @@ resource "aws_sns_topic_subscription" "omni_shipment_milestone_stream_sns_subscr
   topic_arn = "arn:aws:sns:us-east-1:${var.aws_account_number}:omni-wt-rt-shipment-milestone-${var.env}"
   protocol  = "sqs"
   endpoint  = aws_sqs_queue.omni_wt_cw_lenovo_add_milestone_sqs.arn
+
+   filter_policy = jsonencode(
+    {
+      FK_OrderStatusId = [
+        "PUP",
+        "TTC",
+        "DEL",
+      ]
+    }
+  )
 }
 
 # resource "aws_sns_topic_subscription" "omni_apar_failure_stream_sns_subscription" {
