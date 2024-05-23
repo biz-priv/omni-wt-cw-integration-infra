@@ -80,7 +80,7 @@ resource "aws_dynamodb_table" "wt_cw_add_milestone_table" {
   range_key    = "OrderStatusId"
 
   attribute {
-    name = "FK_OrderNo"
+    name = "OrderNo"
     type = "S"
   }
 
