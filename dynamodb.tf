@@ -74,7 +74,7 @@ resource "aws_dynamodb_table" "wt_cw_customers_list_table" {
 }
 
 resource "aws_dynamodb_table" "wt_cw_add_milestone_table" {
-  name         = "wt-cw-add-milestone-${var.env}"
+  name         = "wt-cw-add-milestone-status-${var.env}"
   billing_mode = "PAY_PER_REQUEST"
   hash_key     = "OrderNo"
   range_key    = "OrderStatusId"
@@ -106,5 +106,43 @@ resource "aws_dynamodb_table" "wt_cw_add_milestone_table" {
     Environment = var.env
     STAGE       = var.env
     Name        = "wt-cw-add-milestone-${var.env}"
+  }
+}
+
+resource "aws_dynamodb_table" "wt_cw_pod_status_table" {
+  name             = "wt-cw-pod-status-${var.env}"
+  billing_mode     = "PAY_PER_REQUEST"
+  hash_key         = "OrderNo"
+  range_key        = "DocType"
+  stream_enabled   = true
+  stream_view_type = "NEW_AND_OLD_IMAGES"
+
+  attribute {
+    name = "OrderNo"
+    type = "S"
+  }
+
+  attribute {
+    name = "DocType"
+    type = "S"
+  }
+
+  attribute {
+    name = "Status"
+    type = "S"
+  }
+
+  global_secondary_index {
+    name            = "Status-index"
+    hash_key        = "Status"
+    projection_type = "ALL"
+  }
+
+  tags = {
+    Application = var.application
+    CreatedBy   = var.created_by
+    Environment = var.env
+    STAGE       = var.env
+    Name        = "wt-cw-pod-status-${var.env}"
   }
 }

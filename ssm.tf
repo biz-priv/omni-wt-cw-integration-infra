@@ -133,3 +133,29 @@ resource "aws_ssm_parameter" "wt_cw_add_milestone_table_name" {
     STAGE       = var.env
   }
 }
+
+resource "aws_ssm_parameter" "wt_cw_lenovo_pod_status_table_name" {
+  name  = "/${var.application}/${var.env}/pod-status-table-name"
+  type  = "String"
+  value = aws_dynamodb_table.wt_cw_pod_status_table.name
+
+  tags = {
+    Application = var.application
+    CreatedBy   = var.created_by
+    Environment = var.env
+    STAGE       = var.env
+  }
+}
+
+resource "aws_ssm_parameter" "omni_wt_cw_lenovo_pod_status_sqs_arn" {
+  name  = "/${var.application}/${var.env}/pod-docs/sqs/queue.arn"
+  type  = "String"
+  value = aws_sqs_queue.omni_wt_cw_lenovo_pod_docs_sqs.arn
+
+  tags = {
+    Application = var.application
+    CreatedBy   = var.created_by
+    Environment = var.env
+    STAGE       = var.env
+  }
+}
