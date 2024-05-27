@@ -147,6 +147,32 @@ resource "aws_ssm_parameter" "wt_cw_lenovo_pod_status_table_name" {
   }
 }
 
+resource "aws_ssm_parameter" "wt_cw_lenovo_customer_list_table_name" {
+  name  = "/${var.application}/${var.env}/customer-list-table-name"
+  type  = "String"
+  value = aws_dynamodb_table.wt_cw_customers_list_table.name
+
+  tags = {
+    Application = var.application
+    CreatedBy   = var.created_by
+    Environment = var.env
+    STAGE       = var.env
+  }
+}
+
+resource "aws_ssm_parameter" "wt_cw_lenovo_pod_status_table_stream_arn" {
+  name  = "/${var.application}/${var.env}/pod-status-stream-arn"
+  type  = "String"
+  value = aws_dynamodb_table.wt_cw_pod_status_table.stream_arn
+
+  tags = {
+    Application = var.application
+    CreatedBy   = var.created_by
+    Environment = var.env
+    STAGE       = var.env
+  }
+}
+
 resource "aws_ssm_parameter" "omni_wt_cw_lenovo_pod_status_sqs_arn" {
   name  = "/${var.application}/${var.env}/pod-docs/sqs/queue.arn"
   type  = "String"
