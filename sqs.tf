@@ -27,8 +27,7 @@ data "aws_iam_policy_document" "omni_wt_cw_lenovo_add_milestone_queue_policy" {
       variable = "aws:SourceArn"
       values = [
         "arn:aws:sns:us-east-1:${var.aws_account_number}:omni-wt-rt-shipment-milestone-${var.env}",
-        # "arn:aws:sns:us-east-1:${var.aws_account_number}:omni-wt-rt-apar-failure-${var.env}",
-        # "arn:aws:sns:us-east-1:${var.aws_account_number}:omni-wt-rt-references-${var.env}"
+        "arn:aws:sns:us-east-1:${var.aws_account_number}:omni-wt-rt-apar-failure-${var.env}"
       ]
     }
   }
@@ -55,25 +54,12 @@ resource "aws_sns_topic_subscription" "omni_shipment_milestone_stream_sns_subscr
   )
 }
 
-# resource "aws_sns_topic_subscription" "omni_apar_failure_stream_sns_subscription" {
-#   topic_arn = "arn:aws:sns:us-east-1:${var.aws_account_number}:omni-wt-rt-apar-failure-${var.env}"
-#   protocol  = "sqs"
-#   endpoint  = aws_sqs_queue.omni_wt_cw_lenovo_add_milestone_sqs.arn
-# }
+resource "aws_sns_topic_subscription" "omni_apar_failure_stream_sns_subscription" {
+  topic_arn = "arn:aws:sns:us-east-1:${var.aws_account_number}:omni-wt-rt-apar-failure-${var.env}"
+  protocol  = "sqs"
+  endpoint  = aws_sqs_queue.omni_wt_cw_lenovo_add_milestone_sqs.arn
+}
 
-# resource "aws_sns_topic_subscription" "omni_shipment_location_updates_sns_subscription" {
-#   topic_arn = "arn:aws:sns:us-east-1:${var.aws_account_number}:omni-dw-shipment-location-updates-${var.env}"
-#   protocol  = "sqs"
-#   endpoint  = aws_sqs_queue.omni_wt_cw_lenovo_add_milestone_sqs.arn
-
-#   filter_policy = jsonencode(
-#     {
-#       BillNo = [
-#         "17773",
-#       ]
-#     }
-#   )
-# }
 
 resource "aws_sqs_queue" "omni_wt_cw_lenovo_pod_docs_sqs" {
   name                       = "omni-wt-cw-lenovo-pod-docs-${var.env}"
@@ -104,8 +90,6 @@ data "aws_iam_policy_document" "omni_wt_cw_lenovo_pod_docs_sqs_policy" {
       variable = "aws:SourceArn"
       values = [
         "arn:aws:sns:us-east-1:${var.aws_account_number}:omni-wt-rt-shipment-file-${var.env}",
-        # "arn:aws:sns:us-east-1:${var.aws_account_number}:omni-wt-rt-apar-failure-${var.env}",
-        # "arn:aws:sns:us-east-1:${var.aws_account_number}:omni-wt-rt-references-${var.env}"
       ]
     }
   }
