@@ -128,22 +128,22 @@ resource "aws_sqs_queue_policy" "queue_policy" {
 
   policy = jsonencode({
     Version = "2012-10-17"
-    Id = "example-ID"
+    Id      = "example-ID"
     Statement = [
       {
-        Sid = "example-statement-ID"
+        Sid    = "example-statement-ID"
         Effect = "Allow"
         Principal = {
           Service = "s3.amazonaws.com"
         }
-        Action = "SQS:SendMessage"
+        Action   = "SQS:SendMessage"
         Resource = aws_sqs_queue.omni_wt_cw_lenovo_create_shipment_queue.arn
         Condition = {
           StringEquals = {
             "aws:SourceAccount" = var.aws_account_number
           }
           ArnLike = {
-            "aws:SourceArn" = "arn:aws:s3:::${var.env}-cargowise-to-datawarehouse"  
+            "aws:SourceArn" = "arn:aws:s3:::${var.env}-cargowise-to-datawarehouse"
           }
         }
       }
@@ -151,8 +151,8 @@ resource "aws_sqs_queue_policy" "queue_policy" {
   })
 }
 
-resource "aws_s3_bucket_notification" "existing_bucket_notification" {
-  bucket = data.aws_s3_bucket.cargowise_to_datawarehouse_bucket.id
+resource "aws_s3_bucket_notification" "cargowise_to_datawarehouse_bucket_notification" {
+  bucket      = data.aws_s3_bucket.cargowise_to_datawarehouse_bucket.id
   eventbridge = true
   queue {
     queue_arn     = aws_sqs_queue.omni_wt_cw_lenovo_create_shipment_queue.arn
@@ -161,5 +161,7 @@ resource "aws_s3_bucket_notification" "existing_bucket_notification" {
     filter_prefix = "CargoWiseOutbound/Lenovo"
   }
 
-  depends_on = aws_sqs_queue.omni_wt_cw_lenovo_create_shipment_queue
+  depends_on = [
+    aws_sqs_queue.omni_wt_cw_lenovo_create_shipment_queue
+  ]
 }
