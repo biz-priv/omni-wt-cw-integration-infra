@@ -43,7 +43,7 @@ resource "aws_sns_topic_subscription" "omni_shipment_milestone_stream_sns_subscr
   protocol  = "sqs"
   endpoint  = aws_sqs_queue.omni_wt_cw_lenovo_add_milestone_sqs.arn
 
-   filter_policy = jsonencode(
+  filter_policy = jsonencode(
     {
       FK_OrderStatusId = [
         "PUP",
@@ -105,7 +105,7 @@ resource "aws_sns_topic_subscription" "omni_shipment_file_stream_sns_subscriptio
   protocol  = "sqs"
   endpoint  = aws_sqs_queue.omni_wt_cw_lenovo_pod_docs_sqs.arn
 
-   filter_policy = jsonencode(
+  filter_policy = jsonencode(
     {
       FK_DocType = [
         "HCPOD",
@@ -113,4 +113,53 @@ resource "aws_sns_topic_subscription" "omni_shipment_file_stream_sns_subscriptio
       ]
     }
   )
+}
+
+data "aws_s3_bucket" "cargowise_to_datawarehouse_bucket" {
+  bucket = "${var.env}-cargowise-to-datawarehouse"
+}
+
+resource "aws_sqs_queue" "omni_wt_cw_lenovo_create_shipment_queue" {
+  name = "wt-cw-create-shipment-queue-${var.env}"
+}
+
+resource "aws_sqs_queue_policy" "queue_policy" {
+  queue_url = aws_sqs_queue.omni_wt_cw_lenovo_create_shipment_queue.id
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Id = "example-ID"
+    Statement = [
+      {
+        Sid = "example-statement-ID"
+        Effect = "Allow"
+        Principal = {
+          Service = "s3.amazonaws.com"
+        }
+        Action = "SQS:SendMessage"
+        Resource = aws_sqs_queue.omni_wt_cw_lenovo_create_shipment_queue.arn
+        Condition = {
+          StringEquals = {
+            "aws:SourceAccount" = var.aws_account_number
+          }
+          ArnLike = {
+            "aws:SourceArn" = "arn:aws:s3:::${var.env}-cargowise-to-datawarehouse"  
+          }
+        }
+      }
+    ]
+  })
+}
+
+resource "aws_s3_bucket_notification" "existing_bucket_notification" {
+  bucket = data.aws_s3_bucket.cargowise_to_datawarehouse_bucket.id
+  eventbridge = true
+  queue {
+    queue_arn     = aws_sqs_queue.omni_wt_cw_lenovo_create_shipment_queue.arn
+    events        = ["s3:ObjectCreated:*"]
+    filter_suffix = ".xml"
+    filter_prefix = "CargoWiseOutbound/Lenovo"
+  }
+
+  depends_on = aws_sqs_queue.omni_wt_cw_lenovo_create_shipment_queue
 }
