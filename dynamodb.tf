@@ -2,7 +2,7 @@ resource "aws_dynamodb_table" "wt_cw_create_shipment_status_table" {
   name         = "wt-cw-create-shipment-status-${var.env}"
   billing_mode = "PAY_PER_REQUEST"
   hash_key     = "ShipmentId"
-  # stream_enabled   = true
+  stream_enabled   = true
   stream_view_type = "NEW_AND_OLD_IMAGES"
 
   attribute {
@@ -25,9 +25,15 @@ resource "aws_dynamodb_table" "wt_cw_create_shipment_status_table" {
     type = "S"
   }
 
+  attribute {
+    name = "RetryCount"
+    type = "S"
+  }
+
   global_secondary_index {
-    name            = "Status-index"
+    name            = "Status-RetryCount-Index"
     hash_key        = "Status"
+    range_key       = "RetryCount"
     projection_type = "ALL"
   }
 
