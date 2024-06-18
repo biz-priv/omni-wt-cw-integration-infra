@@ -151,18 +151,3 @@ resource "aws_sqs_queue_policy" "queue_policy" {
     ]
   })
 }
-
-resource "aws_s3_bucket_notification" "cargowise_to_datawarehouse_bucket_notification" {
-  bucket      = data.aws_s3_bucket.cargowise_to_datawarehouse_bucket.id
-  eventbridge = true
-  queue {
-    queue_arn     = aws_sqs_queue.omni_wt_cw_lenovo_create_shipment_queue.arn
-    events        = ["s3:ObjectCreated:*"]
-    filter_suffix = ".xml"
-    filter_prefix = "CargoWiseOutbound/Lenovo"
-  }
-
-  depends_on = [
-    aws_sqs_queue.omni_wt_cw_lenovo_create_shipment_queue
-  ]
-}
