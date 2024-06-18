@@ -198,3 +198,17 @@ resource "aws_ssm_parameter" "omni_wt_cw_lenovo_create_shipment_sqs_arn" {
     STAGE       = var.env
   }
 }
+
+resource "aws_ssm_parameter" "wt_cw_create_shipment_status_table_stream_arn" {
+  name  = "/${var.application}/${var.env}/create-shipment-status-table-name"
+  type  = "String"
+  value = aws_dynamodb_table.wt_cw_create_shipment_status_table.stream_arn
+
+
+  tags = {
+    Application = var.application
+    CreatedBy   = var.created_by
+    Environment = var.env
+    STAGE       = var.env
+  }
+}
