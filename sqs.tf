@@ -119,35 +119,35 @@ data "aws_s3_bucket" "cargowise_to_datawarehouse_bucket" {
   bucket = "${var.env}-cargowise-to-datawarehouse"
 }
 
-# resource "aws_sqs_queue" "omni_wt_cw_lenovo_create_shipment_queue" {
-#   name = "wt-cw-create-shipment-queue-${var.env}"
-#   visibility_timeout_seconds = 45
-# }
+resource "aws_sqs_queue" "omni_wt_cw_lenovo_create_shipment_queue" {
+  name = "wt-cw-create-shipment-queue-${var.env}"
+  visibility_timeout_seconds = 45
+}
 
-# resource "aws_sqs_queue_policy" "queue_policy" {
-#   queue_url = aws_sqs_queue.omni_wt_cw_lenovo_create_shipment_queue.id
+resource "aws_sqs_queue_policy" "queue_policy" {
+  queue_url = aws_sqs_queue.omni_wt_cw_lenovo_create_shipment_queue.id
 
-#   policy = jsonencode({
-#     Version = "2012-10-17"
-#     Id      = "example-ID"
-#     Statement = [
-#       {
-#         Sid    = "example-statement-ID"
-#         Effect = "Allow"
-#         Principal = {
-#           Service = "s3.amazonaws.com"
-#         }
-#         Action   = "SQS:SendMessage"
-#         Resource = aws_sqs_queue.omni_wt_cw_lenovo_create_shipment_queue.arn
-#         Condition = {
-#           StringEquals = {
-#             "aws:SourceAccount" = var.aws_account_number
-#           }
-#           ArnLike = {
-#             "aws:SourceArn" = "arn:aws:s3:::${var.env}-cargowise-to-datawarehouse"
-#           }
-#         }
-#       }
-#     ]
-#   })
-# }
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Id      = "example-ID"
+    Statement = [
+      {
+        Sid    = "example-statement-ID"
+        Effect = "Allow"
+        Principal = {
+          Service = "s3.amazonaws.com"
+        }
+        Action   = "SQS:SendMessage"
+        Resource = aws_sqs_queue.omni_wt_cw_lenovo_create_shipment_queue.arn
+        Condition = {
+          StringEquals = {
+            "aws:SourceAccount" = var.aws_account_number
+          }
+          ArnLike = {
+            "aws:SourceArn" = "arn:aws:s3:::${var.env}-cargowise-to-datawarehouse"
+          }
+        }
+      }
+    ]
+  })
+}
