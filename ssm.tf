@@ -186,18 +186,18 @@ resource "aws_ssm_parameter" "omni_wt_cw_lenovo_pod_status_sqs_arn" {
   }
 }
 
-resource "aws_ssm_parameter" "omni_wt_cw_lenovo_create_shipment_sqs_arn" {
-  name  = "/${var.application}/${var.env}/create-shipment/sqs/queue.arn"
-  type  = "String"
-  value = aws_sqs_queue.omni_wt_cw_lenovo_create_shipment_queue.arn
+# resource "aws_ssm_parameter" "omni_wt_cw_lenovo_create_shipment_sqs_arn" {
+#   name  = "/${var.application}/${var.env}/create-shipment/sqs/queue.arn"
+#   type  = "String"
+#   value = aws_sqs_queue.omni_wt_cw_lenovo_create_shipment_queue.arn
 
-  tags = {
-    Application = var.application
-    CreatedBy   = var.created_by
-    Environment = var.env
-    STAGE       = var.env
-  }
-}
+#   tags = {
+#     Application = var.application
+#     CreatedBy   = var.created_by
+#     Environment = var.env
+#     STAGE       = var.env
+#   }
+# }
 
 resource "aws_ssm_parameter" "wt_cw_create_shipment_status_table_stream_arn" {
   name  = "/${var.application}/${var.env}/create-shipment-status-stream-arn"
