@@ -122,6 +122,7 @@ data "aws_s3_bucket" "cargowise_to_datawarehouse_bucket" {
 resource "aws_sqs_queue" "omni_wt_cw_lenovo_create_shipment_queue" {
   name = "wt-cw-create-shipment-queue-${var.env}"
   visibility_timeout_seconds = 900
+  fifo_queue = true
 }
 
 resource "aws_sqs_queue_policy" "queue_policy" {
