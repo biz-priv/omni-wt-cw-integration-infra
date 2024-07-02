@@ -217,6 +217,18 @@ resource "aws_ssm_parameter" "wt_cw_create_shipment_status_table_stream_arn" {
   type  = "String"
   value = aws_dynamodb_table.wt_cw_create_shipment_status_table.stream_arn
 
+  tags = {
+    Application = var.application
+    CreatedBy   = var.created_by
+    Environment = var.env
+    STAGE       = var.env
+  }
+}
+
+resource "aws_ssm_parameter" "wt_cw_shipment_details_url" {
+  name  = "/${var.application}/${var.env}/cw-shipment-details/url"
+  type  = "String"
+  value = var.wt_cw_shipment_details_url
 
   tags = {
     Application = var.application

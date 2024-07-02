@@ -41,3 +41,8 @@ variable "cw_api_auth" {
   type     = string
   nullable = false
 }
+
+variable "wt_cw_shipment_details_url" {
+  type = string
+  nullable = false
+}
