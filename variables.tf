@@ -42,7 +42,7 @@ variable "cw_api_auth" {
   nullable = false
 }
 
-variable "wt_cw_shipment_details_url" {
+variable "cw_webtracker_base_url" {
   type = string
   nullable = false
 }

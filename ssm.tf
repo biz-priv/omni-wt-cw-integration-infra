@@ -225,10 +225,10 @@ resource "aws_ssm_parameter" "wt_cw_create_shipment_status_table_stream_arn" {
   }
 }
 
-resource "aws_ssm_parameter" "wt_cw_shipment_details_url" {
-  name  = "/${var.application}/${var.env}/cw-shipment-details/url"
+resource "aws_ssm_parameter" "cw_webtracker_base_url" {
+  name  = "/${var.application}/${var.env}/cw-webtracker-base/url"
   type  = "String"
-  value = var.wt_cw_shipment_details_url
+  value = var.cw_webtracker_base_url
 
   tags = {
     Application = var.application
