@@ -153,7 +153,7 @@ resource "aws_dynamodb_table" "wt_cw_pod_status_table" {
   }
 }
 
-resource "aws_dynamodb_table" "omni-wt_cw_cost_transmitter_table" {
+resource "aws_dynamodb_table" "omni_wt_cw_cost_transmitter_table" {
   name             = "omni-wt-cw-cost-transmitter-${var.env}"
   billing_mode     = "PAY_PER_REQUEST"
   hash_key         = "OrderNo"
