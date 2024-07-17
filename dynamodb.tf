@@ -152,3 +152,30 @@ resource "aws_dynamodb_table" "wt_cw_pod_status_table" {
     Name        = "wt-cw-pod-status-${var.env}"
   }
 }
+
+resource "aws_dynamodb_table" "omni-wt_cw_cost_transmitter_table" {
+  name             = "omni-wt-cw-cost-transmitter-${var.env}"
+  billing_mode     = "PAY_PER_REQUEST"
+  hash_key         = "OrderNo"
+  range_key        = "SeqNo"
+  stream_enabled   = true
+  stream_view_type = "NEW_AND_OLD_IMAGES"
+
+  attribute {
+    name = "OrderNo"
+    type = "S"
+  }
+
+  attribute {
+    name = "SeqNo"
+    type = "S"
+  }
+
+  tags = {
+    Application = var.application
+    CreatedBy   = var.created_by
+    Environment = var.env
+    STAGE       = var.env
+    Name        = "omni-wt-cw-cost-transmitter-${var.env}"
+  }
+}
