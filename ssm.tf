@@ -237,3 +237,29 @@ resource "aws_ssm_parameter" "cw_webtracker_base_url" {
     STAGE       = var.env
   }
 }
+
+resource "aws_ssm_parameter" "omni_wt_cw_cost_transmitter_sqs_arn" {
+  name  = "/${var.application}/${var.env}/cost-transmitter/sqs/queue.arn"
+  type  = "String"
+  value = aws_sqs_queue.omni_wt_cw_cost_transmitter_sqs.arn
+
+  tags = {
+    Application = var.application
+    CreatedBy   = var.created_by
+    Environment = var.env
+    STAGE       = var.env
+  }
+}
+
+resource "aws_ssm_parameter" "omni_wt_cw_cost_transmitter_table" {
+  name  = "/${var.application}/${var.env}/cost-transmitter-table-name"
+  type  = "String"
+  value = aws_dynamodb_table.omni_wt_cw_cost_transmitter_table.name
+
+  tags = {
+    Application = var.application
+    CreatedBy   = var.created_by
+    Environment = var.env
+    STAGE       = var.env
+  }
+}
