@@ -263,3 +263,42 @@ resource "aws_ssm_parameter" "omni_wt_cw_cost_transmitter_table" {
     STAGE       = var.env
   }
 }
+
+resource "aws_ssm_parameter" "create_shipment_duplicates_dl" {
+  name  = "/${var.application}/${var.env}/create-shipment-duplicates/dl"
+  type  = "String"
+  value = var.duplicates_alerts_dl
+
+  tags = {
+    Application = var.application
+    CreatedBy   = var.created_by
+    Environment = var.env
+    STAGE       = var.env
+  }
+}
+
+resource "aws_ssm_parameter" "omni_cw_wt_error_notification_sns_topic_arn" {
+  name  = "/${var.application}/${var.env}/error-notifications/sns.arn"
+  type  = "String"
+  value = aws_sns_topic.omni-wt-cw-error-notification.arn
+
+  tags = {
+    Application = var.application
+    CreatedBy   = var.created_by
+    Environment = var.env
+    STAGE       = var.env
+  }
+}
+
+resource "aws_ssm_parameter" "lenovo_customer_id" {
+  name  = "/${var.application}/${var.env}/lenovo/customerid"
+  type  = "String"
+  value = var.lenovo_customer_id
+
+  tags = {
+    Application = var.application
+    CreatedBy   = var.created_by
+    Environment = var.env
+    STAGE       = var.env
+  }
+}

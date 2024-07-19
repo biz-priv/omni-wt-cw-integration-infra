@@ -8,3 +8,6 @@ s3_suffix          = ".xml"
 cw_api_endpoint    = "https://trxts3services.wisegrid.net/eAdaptor"
 cw_api_auth        = "Basic dHJ4dHMzOjY0ODg1Nw=="
 cw_webtracker_base_url = "http://trxts3.webtracker.wisegrid.net/Login/Login.aspx"
+omni_wt_cw_emails  = ["omnidev@bizcloudexperts.com"]
+lenovo_customer_id = "55185"
+duplicates_alerts_dl = "omnidev@bizcloudexperts.com,alwhite@omnilogistics.com,kvallabhaneni@omnilogistics.com"
