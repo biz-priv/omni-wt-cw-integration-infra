@@ -318,3 +318,4 @@ resource "aws_ssm_parameter" "lenovo_customer_id" {
     Name        = "/${var.application}/${var.env}/lenovo/customerid"
   }
 }
+
