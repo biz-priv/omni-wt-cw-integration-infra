@@ -5,6 +5,13 @@ resource "aws_sqs_queue" "omni_wt_cw_lenovo_add_milestone_sqs" {
   message_retention_seconds  = 345600
   visibility_timeout_seconds = 900
   receive_wait_time_seconds  = 0
+  tags = {
+    Application = var.application
+    CreatedBy   = var.created_by
+    Environment = var.env
+    STAGE       = var.env
+    Name        = "omni-wt-cw-lenovo-add-milestone-${var.env}"
+  }
 }
 
 data "aws_iam_policy_document" "omni_wt_cw_lenovo_add_milestone_queue_policy" {
@@ -68,6 +75,13 @@ resource "aws_sqs_queue" "omni_wt_cw_lenovo_pod_docs_sqs" {
   message_retention_seconds  = 345600
   visibility_timeout_seconds = 900
   receive_wait_time_seconds  = 0
+    tags = {
+    Application = var.application
+    CreatedBy   = var.created_by
+    Environment = var.env
+    STAGE       = var.env
+    Name        = "omni-wt-cw-lenovo-pod-docs-${var.env}"
+  }
 }
 
 data "aws_iam_policy_document" "omni_wt_cw_lenovo_pod_docs_sqs_policy" {
@@ -162,6 +176,13 @@ resource "aws_sqs_queue" "omni_wt_cw_cost_transmitter_sqs" {
   message_retention_seconds  = 345600
   visibility_timeout_seconds = 900
   receive_wait_time_seconds  = 0
+    tags = {
+    Application = var.application
+    CreatedBy   = var.created_by
+    Environment = var.env
+    STAGE       = var.env
+    Name        = "omni-wt-cw-cost-transmitter-${var.env}"
+  }
 }
 
 data "aws_iam_policy_document" "omni_wt_cw_cost_transmitter_queue_policy" {

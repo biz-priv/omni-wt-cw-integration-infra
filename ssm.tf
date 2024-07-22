@@ -9,6 +9,7 @@ resource "aws_ssm_parameter" "s3_prefix_lenovo" {
     CreatedBy   = var.created_by
     Environment = var.env
     STAGE       = var.env
+    Name        = "/${var.application}/${var.env}/s3-prefix"
   }
 }
 
@@ -23,6 +24,7 @@ resource "aws_ssm_parameter" "s3_suffix_lenovo" {
     CreatedBy   = var.created_by
     Environment = var.env
     STAGE       = var.env
+    Name        = "/${var.application}/${var.env}/s3-suffix"
   }
 }
 
@@ -37,21 +39,9 @@ resource "aws_ssm_parameter" "wt_cw_create_shipment_status_table" {
     CreatedBy   = var.created_by
     Environment = var.env
     STAGE       = var.env
+    Name        = "/${var.application}/${var.env}/create-shipment-status-table-name"
   }
 }
-
-# resource "aws_ssm_parameter" "lenovo_create_shipment_status_table_stream_arn" {
-#   name  = "/${var.application}/${var.env}/create-shipment-status-table-stream-arn"
-#   type  = "String"
-#   value = aws_dynamodb_table.lenovo_create_shipment_status_table.stream_arn
-
-#   tags = {
-#     Application = var.application
-#     CreatedBy   = var.created_by
-#     Environment = var.env
-#     STAGE       = var.env
-#   }
-# }
 
 resource "aws_ssm_parameter" "wt_cw_create_shipment_status_table_status_index" {
   name  = "/${var.application}/${var.env}/create-shipment-status-table-status-index"
@@ -64,6 +54,7 @@ resource "aws_ssm_parameter" "wt_cw_create_shipment_status_table_status_index" {
     CreatedBy   = var.created_by
     Environment = var.env
     STAGE       = var.env
+    Name        = "/${var.application}/${var.env}/create-shipment-status-table-status-index"
   }
 }
 resource "aws_ssm_parameter" "wt_cw_create_shipment_status_table_housebill_index" {
@@ -77,6 +68,8 @@ resource "aws_ssm_parameter" "wt_cw_create_shipment_status_table_housebill_index
     CreatedBy   = var.created_by
     Environment = var.env
     STAGE       = var.env
+    Name        = "/${var.application}/${var.env}/create-shipment-status-table-housebill-index"
+
   }
 }
 
@@ -91,6 +84,8 @@ resource "aws_ssm_parameter" "cw_api_endpoint" {
     CreatedBy   = var.created_by
     Environment = var.env
     STAGE       = var.env
+    Name        = "/${var.application}/${var.env}/createShipment/cw/url"
+
   }
 }
 
@@ -105,6 +100,8 @@ resource "aws_ssm_parameter" "cw_api_auth" {
     CreatedBy   = var.created_by
     Environment = var.env
     STAGE       = var.env
+    Name        = "/${var.application}/${var.env}/createShipment/cw/auth"
+
   }
 }
 
@@ -118,6 +115,8 @@ resource "aws_ssm_parameter" "omni_wt_cw_lenovo_add_milestone_sqs_arn" {
     CreatedBy   = var.created_by
     Environment = var.env
     STAGE       = var.env
+    Name        = "/${var.application}/${var.env}/add-milestone/sqs/queue.arn"
+
   }
 }
 
@@ -131,6 +130,8 @@ resource "aws_ssm_parameter" "wt_cw_add_milestone_table_name" {
     CreatedBy   = var.created_by
     Environment = var.env
     STAGE       = var.env
+    Name        = "/${var.application}/${var.env}/add-milestone-status-table-name"
+
   }
 }
 
@@ -144,6 +145,8 @@ resource "aws_ssm_parameter" "wt_cw_lenovo_pod_status_table_name" {
     CreatedBy   = var.created_by
     Environment = var.env
     STAGE       = var.env
+    Name        = "/${var.application}/${var.env}/pod-status-table-name"
+
   }
 }
 
@@ -157,6 +160,7 @@ resource "aws_ssm_parameter" "wt_cw_lenovo_customer_list_table_name" {
     CreatedBy   = var.created_by
     Environment = var.env
     STAGE       = var.env
+    Name        = "/${var.application}/${var.env}/customer-list-table-name"
   }
 }
 
@@ -170,6 +174,7 @@ resource "aws_ssm_parameter" "wt_cw_lenovo_pod_status_table_stream_arn" {
     CreatedBy   = var.created_by
     Environment = var.env
     STAGE       = var.env
+    Name        = "/${var.application}/${var.env}/pod-status-stream-arn"
   }
 }
 
@@ -183,6 +188,8 @@ resource "aws_ssm_parameter" "omni_wt_cw_lenovo_pod_status_sqs_arn" {
     CreatedBy   = var.created_by
     Environment = var.env
     STAGE       = var.env
+    Name        = "/${var.application}/${var.env}/pod-docs/sqs/queue.arn"
+
   }
 }
 
@@ -196,6 +203,7 @@ resource "aws_ssm_parameter" "omni_wt_cw_lenovo_create_shipment_sqs_arn" {
     CreatedBy   = var.created_by
     Environment = var.env
     STAGE       = var.env
+    Name        = "/${var.application}/${var.env}/create-shipment/sqs/queue.arn"
   }
 }
 
@@ -209,6 +217,7 @@ resource "aws_ssm_parameter" "omni_wt_cw_lenovo_create_shipment_sqs_url" {
     CreatedBy   = var.created_by
     Environment = var.env
     STAGE       = var.env
+    Name        = "/${var.application}/${var.env}/create-shipment/sqs/queue.url"
   }
 }
 
@@ -222,6 +231,7 @@ resource "aws_ssm_parameter" "wt_cw_create_shipment_status_table_stream_arn" {
     CreatedBy   = var.created_by
     Environment = var.env
     STAGE       = var.env
+    Name        = "/${var.application}/${var.env}/create-shipment-status-stream-arn"
   }
 }
 
@@ -235,6 +245,7 @@ resource "aws_ssm_parameter" "cw_webtracker_base_url" {
     CreatedBy   = var.created_by
     Environment = var.env
     STAGE       = var.env
+    Name        = "/${var.application}/${var.env}/cw-webtracker-base/url"
   }
 }
 
@@ -248,6 +259,7 @@ resource "aws_ssm_parameter" "omni_wt_cw_cost_transmitter_sqs_arn" {
     CreatedBy   = var.created_by
     Environment = var.env
     STAGE       = var.env
+    Name        = "/${var.application}/${var.env}/cost-transmitter/sqs/queue.arn"
   }
 }
 
@@ -261,6 +273,7 @@ resource "aws_ssm_parameter" "omni_wt_cw_cost_transmitter_table" {
     CreatedBy   = var.created_by
     Environment = var.env
     STAGE       = var.env
+    Name        = "/${var.application}/${var.env}/cost-transmitter-table-name"
   }
 }
 
@@ -274,6 +287,7 @@ resource "aws_ssm_parameter" "create_shipment_duplicates_dl" {
     CreatedBy   = var.created_by
     Environment = var.env
     STAGE       = var.env
+    Name        = "/${var.application}/${var.env}/create-shipment-duplicates/dl"
   }
 }
 
@@ -287,6 +301,7 @@ resource "aws_ssm_parameter" "omni_cw_wt_error_notification_sns_topic_arn" {
     CreatedBy   = var.created_by
     Environment = var.env
     STAGE       = var.env
+    Name        = "/${var.application}/${var.env}/error-notifications/sns.arn"
   }
 }
 
@@ -300,5 +315,6 @@ resource "aws_ssm_parameter" "lenovo_customer_id" {
     CreatedBy   = var.created_by
     Environment = var.env
     STAGE       = var.env
+    Name        = "/${var.application}/${var.env}/lenovo/customerid"
   }
 }
