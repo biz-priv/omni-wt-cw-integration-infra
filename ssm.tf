@@ -318,3 +318,17 @@ resource "aws_ssm_parameter" "lenovo_customer_id" {
     Name        = "/${var.application}/${var.env}/lenovo/customerid"
   }
 }
+
+resource "aws_ssm_parameter" "wt_cw_add_milestone_sqs_url" {
+  name  = "/${var.application}/${var.env}/add-milestome/Queue.Url"
+  type  = "String"
+  value = aws_sqs_queue.omni_wt_cw_lenovo_add_milestone_sqs.url
+
+  tags = {
+    Application = var.application
+    CreatedBy   = var.created_by
+    Environment = var.env
+    STAGE       = var.env
+    Name        = "/${var.application}/${var.env}/add-milestome/Queue.Url"
+  }
+}
