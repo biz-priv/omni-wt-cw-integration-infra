@@ -9,5 +9,5 @@ cw_api_endpoint    = "https://trxelpservices.wisegrid.net/eAdaptor"
 cw_api_auth        = "Basic dGVpZGF0YTp0ZWlkYXRhJDEyMw=="
 cw_webtracker_base_url = "https://trxelpwebtracker.wisegrid.net/Login/Login.aspx"
 omni_wt_cw_emails  = ["omnidev@bizcloudexperts.com", "kvallabhaneni@omnilogistics.com","support@bizcloudexperts.com"]
-lenovo_customer_id = "55185"
+lenovo_customer_id = "55406"
 duplicates_alerts_dl = "omnidev@bizcloudexperts.com,alwhite@omnilogistics.com,kvallabhaneni@omnilogistics.com,applications@omnilogistics.com"
