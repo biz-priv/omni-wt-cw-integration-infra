@@ -11,3 +11,4 @@ cw_webtracker_base_url = "http://trxts3.webtracker.wisegrid.net/Login/Login.aspx
 omni_wt_cw_emails  = ["omnidev@bizcloudexperts.com"]
 lenovo_customer_id = "55185"
 duplicates_alerts_dl = "omnidev@bizcloudexperts.com,alwhite@omnilogistics.com,kvallabhaneni@omnilogistics.com"
+cost_transmitter_bill_to_number = "55185"
