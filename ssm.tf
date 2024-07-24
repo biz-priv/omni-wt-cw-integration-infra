@@ -332,3 +332,4 @@ resource "aws_ssm_parameter" "wt_cw_add_milestone_sqs_url" {
     Name        = "/${var.application}/${var.env}/add-milestome/Queue.Url"
   }
 }
+
