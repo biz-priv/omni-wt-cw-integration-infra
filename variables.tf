@@ -61,3 +61,8 @@ variable "duplicates_alerts_dl" {
   type = string
   nullable = false
 }
+
+variable "cost_transmitter_bill_to_number" {
+  type = string
+  nullable = false
+}

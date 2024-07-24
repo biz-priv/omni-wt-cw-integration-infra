@@ -332,3 +332,17 @@ resource "aws_ssm_parameter" "wt_cw_add_milestone_sqs_url" {
     Name        = "/${var.application}/${var.env}/add-milestome/Queue.Url"
   }
 }
+
+resource "aws_ssm_parameter" "wt_cw_cost_transmitter_bill_to_number" {
+  name  = "/${var.application}/${var.env}/cost-transmitter/bill_to_number"
+  type  = "String"
+  value = var.cost_transmitter_bill_to_number
+
+  tags = {
+    Application = var.application
+    CreatedBy   = var.created_by
+    Environment = var.env
+    STAGE       = var.env
+    Name        = "/${var.application}/${var.env}/cost-transmitter/bill_to_number"
+  }
+}
