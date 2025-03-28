@@ -8,6 +8,7 @@ resource "aws_sqs_queue" "omni_wt_cw_lenovo_add_milestone_sqs" {
   tags = {
     Application = var.application
     CreatedBy   = var.created_by
+    ProjectID   = "PRJ0020819"
     Environment = var.env
     STAGE       = var.env
     Name        = "omni-wt-cw-lenovo-add-milestone-${var.env}"
@@ -78,6 +79,7 @@ resource "aws_sqs_queue" "omni_wt_cw_lenovo_pod_docs_sqs" {
     tags = {
     Application = var.application
     CreatedBy   = var.created_by
+    ProjectID   = "PRJ0020819"
     Environment = var.env
     STAGE       = var.env
     Name        = "omni-wt-cw-lenovo-pod-docs-${var.env}"
