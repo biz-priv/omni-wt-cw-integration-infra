@@ -181,6 +181,7 @@ resource "aws_sqs_queue" "omni_wt_cw_cost_transmitter_sqs" {
     tags = {
     Application = var.application
     CreatedBy   = var.created_by
+    ProjectID   = "PRJ0020819"
     Environment = var.env
     STAGE       = var.env
     Name        = "omni-wt-cw-cost-transmitter-${var.env}"
