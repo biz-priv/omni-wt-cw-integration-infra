@@ -52,6 +52,7 @@ resource "aws_dynamodb_table" "wt_cw_create_shipment_status_table" {
   tags = {
     Application = var.application
     CreatedBy   = var.created_by
+    ProjectID   = "PRJ0020819"
     Environment = var.env
     STAGE       = var.env
     Name        = "wt-cw-create-shipment-status-${var.env}"
@@ -73,6 +74,7 @@ resource "aws_dynamodb_table" "wt_cw_customers_list_table" {
   tags = {
     Application = var.application
     CreatedBy   = var.created_by
+    ProjectID   = "PRJ0020819"
     Environment = var.env
     STAGE       = var.env
     Name        = "wt-cw-customers-list-${var.env}"
@@ -109,6 +111,7 @@ resource "aws_dynamodb_table" "wt_cw_add_milestone_table" {
   tags = {
     Application = var.application
     CreatedBy   = var.created_by
+    ProjectID   = "PRJ0020819"
     Environment = var.env
     STAGE       = var.env
     Name        = "wt-cw-add-milestone-${var.env}"
@@ -147,6 +150,7 @@ resource "aws_dynamodb_table" "wt_cw_pod_status_table" {
   tags = {
     Application = var.application
     CreatedBy   = var.created_by
+    ProjectID   = "PRJ0020819"
     Environment = var.env
     STAGE       = var.env
     Name        = "wt-cw-pod-status-${var.env}"
@@ -174,6 +178,7 @@ resource "aws_dynamodb_table" "omni_wt_cw_cost_transmitter_table" {
   tags = {
     Application = var.application
     CreatedBy   = var.created_by
+    ProjectID   = "PRJ0020819"
     Environment = var.env
     STAGE       = var.env
     Name        = "omni-wt-cw-cost-transmitter-${var.env}"
