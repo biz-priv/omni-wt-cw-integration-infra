@@ -85,6 +85,7 @@ resource "aws_ssm_parameter" "cw_api_endpoint" {
   tags = {
     Application = var.application
     CreatedBy   = var.created_by
+    ProjectID   = "PRJ0020819"
     Environment = var.env
     STAGE       = var.env
     Name        = "/${var.application}/${var.env}/createShipment/cw/url"
@@ -147,6 +148,7 @@ resource "aws_ssm_parameter" "wt_cw_lenovo_pod_status_table_name" {
   tags = {
     Application = var.application
     CreatedBy   = var.created_by
+    ProjectID   = "PRJ0020819"
     Environment = var.env
     STAGE       = var.env
     Name        = "/${var.application}/${var.env}/pod-status-table-name"
@@ -280,6 +282,7 @@ resource "aws_ssm_parameter" "omni_wt_cw_cost_transmitter_table" {
   tags = {
     Application = var.application
     CreatedBy   = var.created_by
+    ProjectID   = "PRJ0020819"
     Environment = var.env
     STAGE       = var.env
     Name        = "/${var.application}/${var.env}/cost-transmitter-table-name"
@@ -308,6 +311,7 @@ resource "aws_ssm_parameter" "omni_cw_wt_error_notification_sns_topic_arn" {
   tags = {
     Application = var.application
     CreatedBy   = var.created_by
+    ProjectID   = "PRJ0020819"
     Environment = var.env
     STAGE       = var.env
     Name        = "/${var.application}/${var.env}/error-notifications/sns.arn"
@@ -322,6 +326,7 @@ resource "aws_ssm_parameter" "lenovo_customer_id" {
   tags = {
     Application = var.application
     CreatedBy   = var.created_by
+    ProjectID   = "PRJ0020819"
     Environment = var.env
     STAGE       = var.env
     Name        = "/${var.application}/${var.env}/lenovo/customerid"
@@ -336,6 +341,7 @@ resource "aws_ssm_parameter" "wt_cw_add_milestone_sqs_url" {
   tags = {
     Application = var.application
     CreatedBy   = var.created_by
+    ProjectID   = "PRJ0020819"
     Environment = var.env
     STAGE       = var.env
     Name        = "/${var.application}/${var.env}/add-milestome/Queue.Url"
